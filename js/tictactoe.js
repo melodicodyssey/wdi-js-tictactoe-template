@@ -1,6 +1,6 @@
 var game = game || {};
 
-game.ticTacToe = angular.module("ticTacToe", [])
+game.ticTacToe = angular.module("ticTacToe", []);
 
 game.TTTController = function($scope) {
 
@@ -54,7 +54,7 @@ game.TTTController = function($scope) {
 
   $scope.handle_click = function() {
     //### this function is bound to a click event for each tile on the board
-  }
+  };
 
   $scope.is_active = function(tile) {
     //### boolean - is tile active?
@@ -94,7 +94,7 @@ game.TTTController = function($scope) {
     //### - show results panel
     //### - display tie and rubber ducky image
     //### - show new_game button
-  }
+  };
 
   $scope.hide_indicators = function() {
     //### optional: call this to hide the "status" container after detecting a win or a tie
@@ -103,12 +103,12 @@ game.TTTController = function($scope) {
   $scope.show_combo = function(combo) {
     //### optional: call this to highlight the combination of tiles that resulted in a win
     //### e.g. colors winning XXX or OOO red.
-  }
+  };
 
   $scope.new_game = function() {
     // see http://stackoverflow.com/questions/2405117/difference-between-window-location-href-window-location-href-and-window-location
     // nothing to add here
-    window.location.href = window.location.href
+    window.location.href = window.location.href;
   };
 
   // call initialize() to get the party started

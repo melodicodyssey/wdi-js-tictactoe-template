@@ -13,20 +13,24 @@
   <body>
 
      <div id="game" ng-controller="GameCtrl">
-      {{win_combos}}
        <ul id="teams">
         <li>
-          <img src="">
+          <img src="{{players[0].img_url}}" />
           <h2>Team <span class="team"></span></h2>
-          <h3 class="player"></h3>
+          <h3 class="player">{{players[0].name}}</h3>
         </li>
         <li>
-          <img src="">
+          <img src="{{players[1].img_url}}" />
           <h2>Team <span class="team"></span></h2>
-          <h3 class="player"></h3>
+          <h3 class="player">{{players[1].name}}</h3>
         </li>
       </ul>
       <div id="board">
+        <div ng-repeat="tile in tiles">
+          <div id="tile{{tile.id}}" class="tile">
+            {{tile.letter | uppercase}}
+          </div>
+      </div>
       </div>
       <div id="results">
         <h1></h1>
