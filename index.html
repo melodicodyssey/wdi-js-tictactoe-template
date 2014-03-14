@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<htme ng-app="ticTacToe">
+<html ng-app="TicTacToe">
   <head>
     <title>TIC TAC TOE</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script src="js/angular.min.js"</script>
+    <script src="js/angular-route.min.js"</script>
+    <script src="js/tictactoe_controller.js"></script>
     <link rel="stylesheet" type="text/css" href="css/reset.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
 
-     <div id="game" ng-controller="gameCtrl">
+     <div id="game" ng-controller="GameCtrl">
+      {{win_combos}}
        <ul id="teams">
         <li>
           <img src="">
@@ -29,9 +35,6 @@
       </div>
     </div>
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/underscore.min.js"></script>
-  <script src="js/tictactoe.js"></script>
   </body>
 </html>
 
