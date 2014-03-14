@@ -5,7 +5,17 @@ $(function() {
   //var board             =    // the board  container
   var status_indicators = $('#teams li');   // status bar container
 
-  var tiles = [];                         // all the "tiles"
+  var tiles = [
+    {id: 0, clickedBy: -1, leftColumn: true, topRow: true},
+    {id: 1, clickedBy: -1, middleColumn: true, topRow: true},
+    {id: 2, clickedBy: -1, rightColumn: true, topRow: true},
+    {id: 3, clickedBy: -1, leftColumn: true, middleRow: true},
+    {id: 4, clickedBy: -1, middleColumn: true, middleRow: true},
+    {id: 5, clickedBy: -1, rightColumn: true, middleRow: true},
+    {id: 6, clickedBy: -1, leftColumn: true, bottomRow: true},
+    {id: 7, clickedBy: -1, middleColumn: true, bottomRow: true},
+    {id: 8, clickedBy: -1, rightColumn: true, bottomRow: true}
+  ];                         // all the "tiles"
 
   var players = [                         // player data
     {
@@ -33,7 +43,7 @@ $(function() {
 
   var initialize = function() {
     //### ready the board for game play
-    
+
     //### 1.) Create nine tiles. Each is a div, each needs to be bound to 'handle_click'.
     //### Make sure giving each tile a unique 'id' for targeting. Find tile's 'class' in css.
     //### Append tiles to board.
