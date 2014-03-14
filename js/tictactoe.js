@@ -5,17 +5,7 @@ $(function() {
   //var board             =    // the board  container
   var status_indicators = $('#teams li');   // status bar container
 
-  var tiles = [
-    {id: 0, clickedBy: -1, leftColumn: true, topRow: true},
-    {id: 1, clickedBy: -1, middleColumn: true, topRow: true},
-    {id: 2, clickedBy: -1, rightColumn: true, topRow: true},
-    {id: 3, clickedBy: -1, leftColumn: true, middleRow: true},
-    {id: 4, clickedBy: -1, middleColumn: true, middleRow: true},
-    {id: 5, clickedBy: -1, rightColumn: true, middleRow: true},
-    {id: 6, clickedBy: -1, leftColumn: true, bottomRow: true},
-    {id: 7, clickedBy: -1, middleColumn: true, bottomRow: true},
-    {id: 8, clickedBy: -1, rightColumn: true, bottomRow: true}
-  ];                         // all the "tiles"
+  var tiles = [];                         // all the "tiles"
 
   var players = [                         // player data
     {
