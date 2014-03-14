@@ -1,10 +1,5 @@
-var game = game || {};
-
-// game.gameRouter = angular.module('gameRouter', ['ngRoute']);
-
-// game.TicTacToe = angular.module("TicTacToe", ['gameRouter']);
-
 var game = angular.module("TicTacToe", []);
+// game.gameRouter = angular.module('gameRouter', ['ngRoute']);
 
 game.controller("GameCtrl", ['$scope', function($scope) {
   $scope.board = [];
