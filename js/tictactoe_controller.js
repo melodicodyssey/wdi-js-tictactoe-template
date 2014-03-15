@@ -82,11 +82,14 @@ game.controller("GameCtrl", ['$scope', function($scope) {
 
   // Handle the click event
   $scope.handleClick = function(tileIndex) {
-    $scope.tiles[tileIndex].letter = $scope.current_player.marker;
-    $scope.tiles[tileIndex].clicked = true;
-    $scope.turns ++;
-    $scope.checkWinner();
-    $scope.togglePlayer();
+    var tile = $scope.tiles[tileIndex];
+    if (tile.clicked === false) {
+      tile.letter = $scope.current_player.marker;
+      tile.clicked = true;
+      $scope.turns ++;
+      $scope.checkWinner();
+      $scope.togglePlayer();
+    };
   };
 
   // Initialize the game!
