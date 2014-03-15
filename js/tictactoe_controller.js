@@ -47,14 +47,37 @@ game.controller("GameCtrl", ['$scope', function($scope) {
     console.log("changed");
   }, true);
 
-  // Initialize
+  // Define initialize function
   $scope.initialize = function() {
     $scope.current_player = $scope.players[0];
   };
 
+  // Switch the Current Player
   $scope.togglePlayer = function() {
-    if ($scope.current_player === $scope.players[0]) {$scope.current_player = $scope.players[1]}
-    else {$scope.current_player = $scope.players[0]}
+    if ($scope.current_player === $scope.players[0]) {$scope.current_player = $scope.players[1];}
+    else {$scope.current_player = $scope.players[0];}
+  };
+
+  // Check if a winning combo has been met
+  $scope.checkWinner = function() {
+    var p1 = [];
+    var p2 = [];
+    _.each($scope.tiles, function(tile) {
+      if (tile.letter === $scope.players[0].marker) {p1.push(tile.id);}
+      if (tile.letter === $scope.players[1].marker) {p2.push(tile.id);}
+    });
+    // Use the _.intersection function!
+    _.each($scope.win_combos, function(combo){
+      if (_.intersection(combo, p1).length === 3) {$scope.declareWinner($scope.players[0]);}
+      if (_.intersection(combo, p2).length === 3) {$scope.declareWinner($scope.players[1]);}
+    });
+
+  };
+
+  // Declare a winner!
+  $scope.declareWinner = function(player) {
+    console.log(player);
+    console.log(player.name + " wins!");
   };
 
   // Handle the click event
@@ -62,7 +85,10 @@ game.controller("GameCtrl", ['$scope', function($scope) {
     $scope.tiles[tileIndex].letter = $scope.current_player.marker;
     $scope.tiles[tileIndex].clicked = true;
     $scope.turns ++;
-    $scope.togglePlayer()
+    $scope.checkWinner();
+    $scope.togglePlayer();
   };
-$scope.initialize();
+
+  // Initialize the game!
+  $scope.initialize();
 }]);
