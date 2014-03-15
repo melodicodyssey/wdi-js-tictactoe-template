@@ -25,10 +25,11 @@
           <h3 class="player">{{players[1].name}}</h3>
         </li>
       </ul>
+      <div>{{turns}}</div>
       <div id="board">
         <div ng-repeat="tile in tiles">
-          <div id="tile{{tile.id}}" class="tile">
-            {{tile.letter | uppercase}}
+          <div id="tile{{tile.id}}" class="tile" ng-click="handleClick($index)">
+            {{tile.letter}}
           </div>
       </div>
       </div>

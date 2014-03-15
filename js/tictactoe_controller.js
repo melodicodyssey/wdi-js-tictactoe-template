@@ -2,6 +2,14 @@ var game = angular.module("TicTacToe", []);
 // game.gameRouter = angular.module('gameRouter', ['ngRoute']);
 
 game.controller("GameCtrl", ['$scope', function($scope) {
+
+  // Set scope variables:
+  //    tiles
+  //    status_indicators
+  //    players
+  //    win_combos
+  //    current_player
+  //    turns
   $scope.tiles = [
     {id: 0, letter: "", clicked: false},
     {id: 1, letter: "", clicked: false},
@@ -30,7 +38,23 @@ game.controller("GameCtrl", ['$scope', function($scope) {
   $scope.win_combos = [
     [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]
   ];
+  $scope.current_player = null;
+  $scope.turns = 0;
+
+  // Watch for changes to 'tiles' and reflect in DOM
+  $scope.$watch('tiles', function(newVal, oldVal) {
+    console.log("changed");
+  }, true);
+
+  // Initialize
   $scope.initialize = function() {
+    $current_player = players[0];
   };
 
+  // Handle the click event
+  $scope.handleClick = function(tileIndex) {
+    $scope.tiles[tileIndex].letter = "X";
+    $scope.tiles[tileIndex].clicked = true;
+    $scope.turns ++;
+  }
 }]);
