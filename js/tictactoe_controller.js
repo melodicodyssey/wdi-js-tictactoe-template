@@ -40,6 +40,8 @@ game.controller("GameCtrl", ['$scope', function($scope) {
   ];
   $scope.current_player = null;
   $scope.turns = 0;
+  $scope.winner = "";
+  $scope.GameOver = false;
 
   // Watch for changes to 'tiles' and reflect in DOM
   $scope.$watch('tiles', function(newVal, oldVal) {
@@ -69,12 +71,13 @@ game.controller("GameCtrl", ['$scope', function($scope) {
     });
     // Use _.intersection function to compare each player's tiles against winning combos
     _.each($scope.win_combos, function(combo){
-      if (_.intersection(combo, p1).length === 3) {winner = true; $scope.declareWinner($scope.players[0]);}
-      if (_.intersection(combo, p2).length === 3) {winner = true; $scope.declareWinner($scope.players[1]);}
+      if (_.intersection(combo, p1).length === 3) {$scope.declareWinner($scope.players[0]);}
+      if (_.intersection(combo, p2).length === 3) {$scope.declareWinner($scope.players[1]);}
     });
     // Else if all tiles are filled without a winning combo matched, game is tied
-    if ($scope.turns === 9 && winner === false) {
-      return console.log("Tie game!");
+    if ($scope.turns === 9 && winner === "") {
+      console.log("Tie game!");
+      $scope.end_game("tie");
     }
   };
 
@@ -82,6 +85,8 @@ game.controller("GameCtrl", ['$scope', function($scope) {
   $scope.declareWinner = function(player) {
     console.log(player);
     console.log(player.name + " wins!");
+    $scope.winner = player;
+    $scope.GameOver = true;
   };
 
   // Handle the click event
@@ -93,7 +98,13 @@ game.controller("GameCtrl", ['$scope', function($scope) {
       $scope.turns ++;
       $scope.checkWinner();
       $scope.togglePlayer();
-    };
+    }
+  };
+
+  $scope.new_game = function() {
+    // see http://stackoverflow.com/questions/2405117/difference-between-window-location-href-window-location-href-and-window-location
+    // nothing to add here
+    window.location.href = window.location.href;
   };
 
   // Initialize the game!

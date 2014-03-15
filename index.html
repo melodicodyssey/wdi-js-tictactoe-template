@@ -33,10 +33,10 @@
           </div>
       </div>
       </div>
-      <div id="results">
-        <h1></h1>
+      <div id="results" ng-show="GameOver">
+        <h1>{{winner.name + " Wins!" || "Tie"}}</h1>
         <span class="image"></span>
-        <button>play again</button>
+        <button ng-click="new_game()">play again</button>
       </div>
     </div>
 
