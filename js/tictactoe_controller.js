@@ -62,16 +62,20 @@ game.controller("GameCtrl", ['$scope', function($scope) {
   $scope.checkWinner = function() {
     var p1 = [];
     var p2 = [];
+    var winner = false;
     _.each($scope.tiles, function(tile) {
       if (tile.letter === $scope.players[0].marker) {p1.push(tile.id);}
       if (tile.letter === $scope.players[1].marker) {p2.push(tile.id);}
     });
-    // Use the _.intersection function!
+    // Use _.intersection function to compare each player's tiles against winning combos
     _.each($scope.win_combos, function(combo){
-      if (_.intersection(combo, p1).length === 3) {$scope.declareWinner($scope.players[0]);}
-      if (_.intersection(combo, p2).length === 3) {$scope.declareWinner($scope.players[1]);}
+      if (_.intersection(combo, p1).length === 3) {winner = true; $scope.declareWinner($scope.players[0]);}
+      if (_.intersection(combo, p2).length === 3) {winner = true; $scope.declareWinner($scope.players[1]);}
     });
-
+    // Else if all tiles are filled without a winning combo matched, game is tied
+    if ($scope.turns === 9 && winner === false) {
+      return console.log("Tie game!");
+    }
   };
 
   // Declare a winner!
