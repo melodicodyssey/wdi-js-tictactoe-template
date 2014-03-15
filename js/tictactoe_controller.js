@@ -24,13 +24,13 @@ game.controller("GameCtrl", ['$scope', function($scope) {
   $scope.status_indicators = $('#teams li');
   $scope.players = [    {
       name:      'Ernie',
-      marker:    '&times;',
+      marker:    'E',
       img_url:   'img/ernie.jpg',
       indicator: $scope.status_indicators[0]
     },
     {
       name:      'Bert',
-      marker:    '&oslash;',
+      marker:    'B',
       img_url:   'img/bert.jpg',
       indicator: $scope.status_indicators[1]
     }
@@ -43,18 +43,26 @@ game.controller("GameCtrl", ['$scope', function($scope) {
 
   // Watch for changes to 'tiles' and reflect in DOM
   $scope.$watch('tiles', function(newVal, oldVal) {
+    console.log($scope.current_player);
     console.log("changed");
   }, true);
 
   // Initialize
   $scope.initialize = function() {
-    $current_player = players[0];
+    $scope.current_player = $scope.players[0];
+  };
+
+  $scope.togglePlayer = function() {
+    if ($scope.current_player === $scope.players[0]) {$scope.current_player = $scope.players[1]}
+    else {$scope.current_player = $scope.players[0]}
   };
 
   // Handle the click event
   $scope.handleClick = function(tileIndex) {
-    $scope.tiles[tileIndex].letter = "X";
+    $scope.tiles[tileIndex].letter = $scope.current_player.marker;
     $scope.tiles[tileIndex].clicked = true;
     $scope.turns ++;
-  }
+    $scope.togglePlayer()
+  };
+$scope.initialize();
 }]);
