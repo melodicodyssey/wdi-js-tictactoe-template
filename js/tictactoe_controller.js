@@ -42,6 +42,7 @@ game.controller("GameCtrl", ['$scope', function($scope) {
   $scope.turns = 0;
   $scope.winner = {};
   $scope.GameOver = false;
+  $scope.message = "Tie!"
 
   // Watch for changes to 'tiles' and reflect in DOM
   $scope.$watch('tiles', function(newVal, oldVal) {
@@ -74,7 +75,7 @@ game.controller("GameCtrl", ['$scope', function($scope) {
       if (_.intersection(combo, p2).length === 3) {$scope.winner = $scope.players[1]; $scope.declareWinner($scope.players[1]);}
     });
     // Else if all tiles are filled without a winning combo matched, game is tied
-    if ($scope.turns === 9 && Object.keys($scope.winner).length === 0) {
+    if ($scope.turns === 9 && _.isEqual($scope.winner, {})) {
       console.log("Tie game!");
       $scope.GameOver = true;
     }
@@ -85,6 +86,7 @@ game.controller("GameCtrl", ['$scope', function($scope) {
     console.log(player.name + " wins!");
     // $scope.winner = player;
     $scope.GameOver = true;
+    $scope.message = player.name + " Wins!";
   };
 
   // Handle the click event
